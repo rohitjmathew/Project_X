@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity
 
         data = new LineChartData(lines);
 
-        if (hasAxes) {
+       /* if (hasAxes) {
             Axis axisX = new Axis();
             Axis axisY = new Axis().setHasLines(true);
             if (hasAxesNames) {
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
             data.setAxisXBottom(null);
             data.setAxisYLeft(null);
         }
-
+*/
         data.setBaseValue(Float.NEGATIVE_INFINITY);
         chart.setLineChartData(data);
 
