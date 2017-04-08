@@ -1,8 +1,11 @@
 package com.dev.rohitmathew.crypto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +15,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.Line;
@@ -27,6 +44,7 @@ import lecho.lib.hellocharts.view.Chart;
 import lecho.lib.hellocharts.view.LineChartView;
 
 import static android.R.attr.type;
+import static com.dev.rohitmathew.crypto.Login.sharedPreferences;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,6 +95,9 @@ public class MainActivity extends AppCompatActivity
         chart.setViewportCalculationEnabled(false);
 
         resetViewport();
+
+        getData();
+
 
     }
     private void generateValues() {
@@ -162,6 +183,159 @@ public class MainActivity extends AppCompatActivity
         chart.setLineChartData(data);
 
     }
+
+    private void getData(){
+        String url = "http://prox-hariaakash.rhcloud.com/api/users";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject person = new JSONObject(response);
+                            boolean ct = person.getBoolean("status");
+                            Log.e("ct value", Boolean.toString(ct));
+                            if (ct) {
+                                Double btc = person.getDouble("btc");
+                                Double profit = person.getDouble("profit");
+                                /*Double usd = getUSD();
+                                Double inr = getINR();
+                                Double bit = usd * inr;*/
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("Error", e.getMessage());
+                        }
+                        System.out.println(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mTextView.setText("That didn't work!");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String authKey = sharedPreferences.getString("authKey","");
+                Log.e("authKey", authKey);
+                params.put("authKey", authKey);
+
+
+                Log.i("params of my service", params.toString());
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(stringRequest);
+    }
+
+    /*public double getUSD(){
+        String url = "http://api.coindesk.com/v1/bpi/currentprice/USD.json";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject person = new JSONObject(response);
+                            boolean ct = person.getBoolean("bpi.USD.rate_float");
+                            Log.e("ct value", Boolean.toString(ct));
+                            if (ct) {
+                                Double btc = person.getDouble("btc");
+                                Double profit = person.getDouble("profit");
+                                Double usd = getUSD();
+                                Double inr = getINR();
+                                Double bit = usd * inr;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("Error", e.getMessage());
+                        }
+                        System.out.println(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mTextView.setText("That didn't work!");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String authKey = sharedPreferences.getString("authKey","");
+                Log.e("authKey", authKey);
+                params.put("authKey", authKey);
+
+
+                Log.i("params of my service", params.toString());
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(stringRequest);
+
+    }
+
+    public double getINR(){
+        String url = "http://api.fixer.io/latest?base=USD";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject person = new JSONObject(response);
+                            boolean ct = person.getBoolean("bpi.USD.rate_float");
+                            Log.e("ct value", Boolean.toString(ct));
+                            if (ct) {
+                                Double btc = person.getDouble("btc");
+                                Double profit = person.getDouble("profit");
+                                Double usd = getUSD();
+                                Double inr = getINR();
+                                Double bit = usd * inr;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("Error", e.getMessage());
+                        }
+                        System.out.println(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mTextView.setText("That didn't work!");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                String authKey = sharedPreferences.getString("authKey","");
+                Log.e("authKey", authKey);
+                params.put("authKey", authKey);
+
+
+                Log.i("params of my service", params.toString());
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(stringRequest);
+
+    }*/
+
 
     @Override
     public void onBackPressed() {
