@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#66BB6A"
+
     android:orientation="vertical"
     tools:context="com.dev.rohitmathew.crypto.Login">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="15dp"
-        android:src="@drawable/academia" />
+        app:lottie_fileName="animated_graph.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
 
     <Space
         android:layout_width="match_parent"
@@ -23,16 +24,16 @@
 
     <EditText
         android:id="@+id/editText"
-        android:textColor="#ffffff"
+
 
         android:fontFamily="sans-serif"
         android:hint="E-Mail"
-        android:textColorHint="#ffffff"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.15"
         android:layout_marginLeft="20dp"
-        android:backgroundTint="#ffffff"
+
         android:layout_marginRight="20dp"
         android:inputType="textEmailAddress" />
 
@@ -44,8 +45,7 @@
     <EditText
         android:id="@+id/editText2"
         android:hint="Password"
-        android:textColorHint="#ffffff"
-        android:textColor="#ffffff"
+
 
         android:fontFamily="sans-serif"
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:inputType="textPassword"
-        android:backgroundTint="#ffffff"
+
         android:layout_marginBottom="42dp" />
 
     <Space
@@ -67,13 +67,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-       android:textStyle="bold"
+android:clickable="true"
 
         android:textSize="20dp"
         android:textColorLink="@color/colorPrimary"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_marginLeft="15dp"
-
+        android:onClick="change"
+        android:textAlignment="center"
         android:text="I don't have an account" />
 
     <Space
@@ -89,6 +89,7 @@
         android:background="#388E3C"
         android:textColor="#ffffff"
         android:text="Submit"
+
         android:elevation="3dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />

@@ -1,7 +1,9 @@
 package com.dev.rohitmathew.crypto;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -38,5 +40,11 @@ public class Login extends AppCompatActivity {
                 //mTextView.setText("That didn't work!");
             }
         });
+    }
+    public void change(View view)
+    {
+        Intent i=new Intent(Login.this,Register.class);
+         startActivity(i);
+
     }
 }
