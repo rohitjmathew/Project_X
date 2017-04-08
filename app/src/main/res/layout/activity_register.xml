@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#66BB6A"
+android:orientation="vertical"
+tools:context="com.dev.rohitmathew.crypto.Login">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
+        android:padding="15dp" />
+    <!--android:src="@drawable/academia" />-->
+
+<Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1"/>
+
+<EditText
+    android:id="@+id/editText"
+    android:textColor="#ffffff"
+    android:fontFamily="sans-serif"
+    android:hint="E-Mail"
+    android:textColorHint="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.15"
+    android:layout_marginLeft="20dp"
+    android:backgroundTint="#ffffff"
+    android:layout_marginRight="20dp"
+    android:inputType="textEmailAddress" />
+
+<Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1"/>
+
+<EditText
+    android:id="@+id/editText2"
+    android:hint="Password"
+    android:textColorHint="#ffffff"
+    android:textColor="#ffffff"
+
+    android:fontFamily="sans-serif"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.15"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:inputType="textPassword"
+    android:backgroundTint="#ffffff" />
+
+<Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1"/>
+
+<EditText
+        android:id="@+id/editText3"
+        android:hint="Confirm Password"
+        android:textColorHint="#ffffff"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textPassword"
+        android:backgroundTint="#ffffff" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
+
+<Button
+    android:id="@+id/button"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.15"
+    android:background="#388E3C"
+    android:textColor="#ffffff"
+    android:text="Register"
+    android:elevation="3dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp" />
+
+<Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1"/>
+
+
+</LinearLayout>
