@@ -17,32 +17,32 @@ tools:context="com.dev.rohitmathew.crypto.Login">
         app:lottie_loop="true"
         app:lottie_autoPlay="true" />
 
-<Space
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1" />
+
+    <EditText
+        android:id="@+id/editText3"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.15"
+        android:fontFamily="sans-serif"
+
+        android:hint="E-Mail"
+        android:inputType="textEmailAddress" />
+
+    <Space
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="0.1"/>
 
 <EditText
-    android:id="@+id/editText"
-
-    android:fontFamily="sans-serif"
-    android:hint="E-Mail"
-
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="0.15"
-    android:layout_marginLeft="20dp"
-
-    android:layout_marginRight="20dp"
-    android:inputType="textEmailAddress" />
-
-<Space
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="0.1"/>
-
-<EditText
-    android:id="@+id/editText2"
+    android:id="@+id/editText4"
     android:hint="Password"
 
     android:fontFamily="sans-serif"
@@ -60,7 +60,7 @@ tools:context="com.dev.rohitmathew.crypto.Login">
     android:layout_weight="0.1"/>
 
 <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editText5"
         android:hint="Confirm Password"
 
         android:fontFamily="sans-serif"
@@ -83,7 +83,7 @@ tools:context="com.dev.rohitmathew.crypto.Login">
     android:layout_height="0dp"
     android:layout_weight="0.15"
     android:background="#388E3C"
-    android:textColor="#ffffff"
+    android:textColor="#fff"
     android:text="Register"
     android:elevation="3dp"
     android:layout_marginLeft="20dp"
