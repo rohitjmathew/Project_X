@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity
                             Log.e("ct value", Boolean.toString(ct));
                             if (ct) {
                                 int btc =  dat.getInt("btc");
+                                
                                 TextView bit = (TextView) findViewById(R.id.info_text3);
                                 bit.setText("฿ "+ (10-btc));
                                 TextView bit2 = (TextView) findViewById(R.id.info_text4);
