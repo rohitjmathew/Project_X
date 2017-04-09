@@ -7,232 +7,273 @@
     tools:context="com.dev.rohitmathew.crypto.investTable">
 
     <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:showDividers="middle"
-        android:splitMotionEvents="true">
+
+
+        android:splitMotionEvents="false">
         android:orientation="horizontal"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+
+        >
 
         <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+
+            android:background="#CCC"
+            android:paddingBottom="1dp"
+            android:paddingRight="1dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
-                android:text="Invested/Withdrawn" />
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:text="Invested/Withdrawn"
+                android:textAlignment="center" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                android:text="BTC" />
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:text="BTC"
+
+                android:textAlignment="center" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                android:text="NAV(INR)" />
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:text="NAV(INR)"
+                android:textAlignment="center" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                android:text="Date" />
+
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:text="Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="#CCC"
+            android:paddingBottom="1dp"
+            android:paddingRight="1dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
-                 />
+                android:id="@+id/t1"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-             />
+                android:id="@+id/t2"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
+                />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-          />
+                android:id="@+id/t3"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
+                />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                 />
+                android:id="@+id/t4"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
+                />
         </TableRow>
+
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="#CCC"
+            android:paddingBottom="1dp"
+            android:paddingRight="1dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
+                android:id="@+id/t5"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t6"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t7"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t8"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
         </TableRow>
+
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="#CCC"
+            android:paddingBottom="1dp"
+            android:paddingRight="1dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
+                android:id="@+id/t9"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t10"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t11"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t12"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
         </TableRow>
+
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="#CCC"
+            android:paddingBottom="1dp"
+            android:paddingRight="1dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
+                android:id="@+id/t13"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t14"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t15"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t16"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
         </TableRow>
+
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="#CCC"
+            android:paddingBottom="1dp"
+            android:paddingRight="1dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
+                android:id="@+id/t17"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t18"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
+                android:id="@+id/t19"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
+
                 />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                />
-        </TableRow>
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+                android:id="@+id/t20"
+                android:layout_marginLeft="1dp"
+                android:background="#FFF"
+                android:padding="5dp"
+                android:textAlignment="center"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dip"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="3dip"
                 />
         </TableRow>
+
     </TableLayout>
 </LinearLayout>
