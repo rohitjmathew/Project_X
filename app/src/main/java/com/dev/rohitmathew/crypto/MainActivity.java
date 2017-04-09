@@ -169,20 +169,7 @@ public class MainActivity extends AppCompatActivity
 
         data = new LineChartData(lines);
 
-       /* if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-*/
+
         data.setBaseValue(Float.NEGATIVE_INFINITY);
         chart.setLineChartData(data);
 
@@ -200,6 +187,7 @@ public class MainActivity extends AppCompatActivity
                         try {
                             JSONObject person = new JSONObject(response);
                             JSONObject dat = person.getJSONObject("data");
+                            sharedPreferences.edit().putString("table",response).apply();
                             boolean ct = person.getBoolean("status");
                             Log.e("ct value", Boolean.toString(ct));
                             if (ct) {
@@ -341,6 +329,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -355,6 +344,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -368,6 +358,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            Intent i=new Intent(MainActivity.this,investTable.class);
+            startActivity(i);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
