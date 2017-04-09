@@ -1,6 +1,8 @@
 package com.dev.rohitmathew.crypto;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,13 +29,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
-Button b;
+    Button b;
+    static SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
         setContentView(R.layout.activity_login);
+
+        sharedPreferences = this.getSharedPreferences("text", Context.MODE_PRIVATE);
 
 
         b = (Button) findViewById(R.id.button);
@@ -61,6 +66,8 @@ Button b;
                                 try {
                                     JSONObject person = new JSONObject(response);
                                     boolean ct = person.getBoolean("status");
+                                    String authKey = person.getString("authKey");
+                                    sharedPreferences.edit().putString("authKey",authKey).apply();
                                     Log.e("ct value", Boolean.toString(ct));
                                     if (ct) {
                                         Toast.makeText(getApplicationContext(), "Signing In", Toast.LENGTH_LONG).show();

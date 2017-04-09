@@ -1,6 +1,8 @@
 package com.dev.rohitmathew.crypto;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -28,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,11 +48,11 @@ import lecho.lib.hellocharts.view.Chart;
 import lecho.lib.hellocharts.view.LineChartView;
 
 import static android.R.attr.type;
-import static com.dev.rohitmathew.crypto.Login.sharedPreferences;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    SharedPreferences sharedPreferences;
     private LineChartView chart;
     private LineChartData data;
     private int numberOfLines = 1;
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 
         // Disable viewport recalculations, see toggleCubic() method for more info.
         chart.setViewportCalculationEnabled(false);
-
+      sharedPreferences= getApplicationContext().getSharedPreferences("text", Context.MODE_PRIVATE);
         resetViewport();
 
         getData();
@@ -185,7 +189,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getData(){
-        String url = "http://prox-hariaakash.rhcloud.com/api/users";
+        String authKey = sharedPreferences.getString("authKey","");
+
+        String url = "http://prox-hariaakash.rhcloud.com/api/users?authKey=" + authKey;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -193,14 +199,27 @@ public class MainActivity extends AppCompatActivity
                     public void onResponse(String response) {
                         try {
                             JSONObject person = new JSONObject(response);
+                            JSONObject dat = person.getJSONObject("data");
                             boolean ct = person.getBoolean("status");
                             Log.e("ct value", Boolean.toString(ct));
                             if (ct) {
-                                Double btc = person.getDouble("btc");
-                                Double profit = person.getDouble("profit");
-                                /*Double usd = getUSD();
+                                int btc =  dat.getInt("btc");
+                                TextView bit = (TextView) findViewById(R.id.info_text3);
+                                bit.setText("฿ "+ (10-btc));
+                                TextView bit2 = (TextView) findViewById(R.id.info_text4);
+                                bit2.setText("฿ "+ btc);
+                                int profit = dat.getInt("profit");
+                                TextView prof = (TextView) findViewById(R.id.info_text6);
+                                DecimalFormat formatter = new DecimalFormat("#,###,###");
+                                String z = formatter.format(profit);
+                                prof.setText("₹ "+z);
+                                Double usd = getUSD();
                                 Double inr = getINR();
-                                Double bit = usd * inr;*/
+                                Double binr = usd * inr;
+                                TextView in = (TextView) findViewById(R.id.info_text8);
+
+                                String y = formatter.format(Math.round(binr));
+                                in.setText("₹ "+y);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -217,12 +236,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                String authKey = sharedPreferences.getString("authKey","");
-                Log.e("authKey", authKey);
+                /*Log.e("authKey", authKey);
                 params.put("authKey", authKey);
 
 
-                Log.i("params of my service", params.toString());
+                Log.i("params of my service", params.toString());*/
                 return params;
             }
         };
@@ -234,24 +252,20 @@ public class MainActivity extends AppCompatActivity
         requestQueue.add(stringRequest);
     }
 
-    /*public double getUSD(){
+    public double getUSD(){
         String url = "http://api.coindesk.com/v1/bpi/currentprice/USD.json";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
+                    Double usd;
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject person = new JSONObject(response);
-                            boolean ct = person.getBoolean("bpi.USD.rate_float");
-                            Log.e("ct value", Boolean.toString(ct));
-                            if (ct) {
-                                Double btc = person.getDouble("btc");
-                                Double profit = person.getDouble("profit");
-                                Double usd = getUSD();
-                                Double inr = getINR();
-                                Double bit = usd * inr;
-                            }
+                            JSONObject dat2 = person.getJSONObject("bpi");
+                            JSONObject dat = dat2.getJSONObject("USD");
+                              usd = dat.getDouble("rate_float");
+                            Log.e("usd",usd.toString());
+                            sharedPreferences.edit().putString("usd",usd.toString()).apply();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("Error", e.getMessage());
@@ -263,25 +277,16 @@ public class MainActivity extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
                 //mTextView.setText("That didn't work!");
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                String authKey = sharedPreferences.getString("authKey","");
-                Log.e("authKey", authKey);
-                params.put("authKey", authKey);
-
-
-                Log.i("params of my service", params.toString());
-                return params;
-            }
-        };
+        });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         requestQueue.add(stringRequest);
+        Double usd = Double.parseDouble(sharedPreferences.getString("usd","1.0"));
+
+        return usd;
 
     }
 
@@ -290,19 +295,14 @@ public class MainActivity extends AppCompatActivity
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
+                    Double inr;
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject person = new JSONObject(response);
-                            boolean ct = person.getBoolean("bpi.USD.rate_float");
-                            Log.e("ct value", Boolean.toString(ct));
-                            if (ct) {
-                                Double btc = person.getDouble("btc");
-                                Double profit = person.getDouble("profit");
-                                Double usd = getUSD();
-                                Double inr = getINR();
-                                Double bit = usd * inr;
-                            }
+                            JSONObject dat = person.getJSONObject("rates");
+                            inr = dat.getDouble("INR");
+                            sharedPreferences.edit().putString("inr",inr.toString()).apply();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("Error", e.getMessage());
@@ -314,27 +314,18 @@ public class MainActivity extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
                 //mTextView.setText("That didn't work!");
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                String authKey = sharedPreferences.getString("authKey","");
-                Log.e("authKey", authKey);
-                params.put("authKey", authKey);
-
-
-                Log.i("params of my service", params.toString());
-                return params;
-            }
-        };
+        });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         requestQueue.add(stringRequest);
+        Double inr = Double.parseDouble(sharedPreferences.getString("inr","1.0"));
 
-    }*/
+        return inr;
+
+    }
 
 
     @Override
